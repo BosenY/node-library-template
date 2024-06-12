@@ -1,2 +1,2 @@
-const lib = require("../dist");
+const lib = require("../dist/cjs");
 lib();

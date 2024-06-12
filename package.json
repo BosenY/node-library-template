@@ -2,9 +2,25 @@
   "name": "node-library-template",
   "version": "1.0.0",
   "description": "node-library-template",
-  "main": "dist/cjs/index.js",
-  "types": "dist/cjs/index.d.ts",
   "author": "boseny",
+  "exports": {
+    ".": {
+      "node": {
+        "import": "./dist/esm/index.js",
+        "require": "./dist/cjs/index.js",
+        "types": "./dist/cjs/index.d.ts"
+      },
+      "browser": {
+        "import": "./dist/esm/index.js",
+        "require": "./dist/cjs/index.js",
+        "types": "./dist/esm/index.d.ts"
+      },
+      "default": "./dist/esm/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "scripts": {
     "dev": "father dev",
     "demo": "node ./demo/index.js",
@@ -12,7 +28,7 @@
     "build:deps": "father prebundle",
     "prepublishOnly": "father doctor && npm run build",
     "pub": "yarn publish",
-    "release": "release-it"
+    "release": "quick-publish"
   },
   "license": "ISC",
   "files": [
@@ -23,20 +39,13 @@
     "registry": "https://registry.npmjs.org"
   },
   "devDependencies": {
-    "@release-it/conventional-changelog": "^5.1.1",
     "@types/node": "^18.11.15",
     "babel-plugin-add-module-exports": "^1.0.4",
     "father": "^4.1.1",
-    "git-last-commit": "^1.0.1",
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
-    "release-it": "*",
+    "quick-publish": "^0.7.1",
     "yorkie": "^2.0.0"
-  },
-  "dependencies": {
-    "form-data": "^4.0.0",
-    "mime-types": "^2.1.35",
-    "node-fetch": "^2.6.7"
   },
   "lint-staged": {
     "*.{js,jsx,less,md,json}": [
